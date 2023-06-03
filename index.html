@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Four Video Player</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url(https://i.hizliresim.com/2woitf1.jpg); /* Set the background image */
+      background-size: cover;
+    }
+
+    .video-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      width: 800px; /* Adjust the width as needed */
+      height: 800px; /* Adjust the height as needed */
+      position: relative;
+      overflow: hidden; /* Hide content that exceeds the border */
+      border-radius: 5%; /* Add the 5% border radius */
+      box-shadow: 0 0 35px hwb(199 0% 17% / 0.4); /* Add a blue glow effect */
+      border: 8px solid hwb(199 0% 0% / 0.4); /* Add a light blue border */
+    }
+
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .video-container .large {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain;
+      z-index: 1;
+      border-radius: 0; /* Remove border radius for the larger video */
+    }
+  </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      var videoContainer = document.querySelector('.video-container');
+      var videos = document.querySelectorAll('.video-container video');
+
+      videos.forEach(function(video) {
+        video.muted = true;
+        video.loop = true;
+        video.play();
+
+        video.addEventListener('click', function(event) {
+          if (!video.classList.contains('large')) {
+            videoContainer.classList.add('large');
+            video.classList.add('large');
+          } else {
+            videoContainer.classList.remove('large');
+            video.classList.remove('large');
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="video-container">
+    <video src="https://i.imgur.com/egVojU0.mp4" loop></video>
+    <video src="https://i.imgur.com/0yeUaZH.mp4" loop></video>
+    <video src="https://i.imgur.com/oXaTSlO.mp4" loop></video>
+    <video src="https://i.imgur.com/WuiuALb.mp4" loop></video>
+  </div>
+</body>
+</html>
+</html>
